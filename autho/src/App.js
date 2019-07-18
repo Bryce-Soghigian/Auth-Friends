@@ -1,15 +1,22 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Link } from "react-router-dom";
-import axios from "axios";
 
+import  Login from './Components/Login'
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-    
+    <div>
+ Please login below
+      <div>
+        <Link to="/">Home</Link>
+        <Link to="/login">Login</Link>
+      </div>
+      <Route exact path="/" />
+      <Route exact path="/login" component={Login} />
     </div>
   );
-}
+
+  }
 
 export default App;

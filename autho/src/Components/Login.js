@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import Swal from 'sweetalert2';
 
 
- function Form() {
+ function Login({touched, errors}) {
     return (
         <div>
             <Form>
@@ -29,14 +29,31 @@ export default withFormik({
       };
     },
     handleSubmit(values) {
-      
       Swal.fire({
-        position: 'top-end',
-        type: 'success',
-        title: 'To purchase your goldfish please login',
-        showConfirmButton: false,
-        timer: 1500
+        title: 'Are you sure you would like to login?',
+        text: "If so confirm below",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes!'
+      }).then((result) => {
+        if (result.value) {
+          Swal.fire(
+            'Ok',
+            'Thank you for choosing our service!',
+            'success'
+          )
+        }
       })
+      // Swal.fire({
+      //   position: 'top-end',
+      //   type: 'success',
+      //   title: 'Welcome back!',
+      //   showConfirmButton: false,
+      //   timer: 1500
+      // })
+      console.log(values)
     },
     validationSchema: Yup.object().shape({
       email: Yup.string()
@@ -48,4 +65,4 @@ export default withFormik({
         .required("This field is required")
       
     })
-  })(Form);
+  })(Login);
